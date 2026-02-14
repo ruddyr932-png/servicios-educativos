@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios Educativos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0F172A;
+            --accent: #F59E0B;
+            --accent-light: #FCD34D;
+            --surface: #FFFFFF;
+            --surface-dim: #F8FAFC;
+            --text: #1E293B;
+            --text-light: #64748B;
+            --border: #E2E8F0;
+            --success: #10B981;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header */
+        header {
+            background: var(--primary);
+            padding: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(245, 158, 11, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(252, 211, 77, 0.1) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--surface);
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--accent-light);
+            font-weight: 300;
+            animation: fadeIn 1s ease-out 0.3s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Services Section */
+        .services {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-light));
+            border-radius: 2px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .service-card {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: 
+                0 4px 6px -1px rgba(0, 0, 0, 0.05),
+                0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            border: 2px solid var(--border);
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            animation: slideUp 0.6s ease-out backwards;
+        }
+
+        .service-card:nth-child(1) { animation-delay: 0.1s; }
+        .service-card:nth-child(2) { animation-delay: 0.2s; }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 0;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 
+                0 20px 25px -5px rgba(0, 0, 0, 0.1),
+                0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-color: var(--accent);
+        }
+
+        .service-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .service-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 16px rgba(245, 158, 11, 0.2);
+        }
+
+        .service-name {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .service-description {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .price-tag {
+            display: inline-block;
+            background: var(--surface-dim);
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            border: 2px solid var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .price-amount {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent);
+            font-family: 'Space Mono', monospace;
+        }
+
+        .price-unit {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            font-weight: 400;
+        }
+
+        /* Contact Form */
+        .contact-section {
+            background: var(--primary);
+            padding: 5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(245, 158, 11, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 90% 80%, rgba(252, 211, 77, 0.08) 0%, transparent 50%);
+        }
+
+        .contact-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 3rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .contact-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 2.5rem;
+            font-size: 1.1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text);
+            font-size: 0.95rem;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: var(--surface-dim);
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: var(--surface);
+            box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.25rem;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            color: var(--primary);
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Outfit', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(245, 158, 11, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            background: var(--success);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-top: 1.5rem;
+            text-align: center;
+            font-weight: 600;
+            animation: slideDown 0.5s ease-out;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary);
+            color: var(--surface);
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        footer p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .contact-container {
+                padding: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <h1>Servicios Educativos</h1>
+            <p class="subtitle">Soluciones de aprendizaje de calidad para tu desarrollo</p>
+        </div>
+    </header>
+
+    <!-- Services Section -->
+    <section class="services">
+        <div class="container">
+            <h2 class="section-title">Nuestros Servicios</h2>
+            
+            <div class="services-grid">
+                <!-- Service 1: Progrentis -->
+                <div class="service-card">
+                    <div class="service-content">
+                        <div class="service-icon">📚</div>
+                        <h3 class="service-name">Progrentis</h3>
+                        <p class="service-description">
+                            Plataforma innovadora de desarrollo de habilidades de lectura y comprensión. Mejora tu velocidad lectora y capacidad de análisis.
+                        </p>
+                        <div class="price-tag">
+                            <div class="price-amount">$200</div>
+                            <div class="price-unit">Por unidad</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 2: Tecnología Módulo -->
+                <div class="service-card">
+                    <div class="service-content">
+                        <div class="service-icon">💻</div>
+                        <h3 class="service-name">Tecnología Módulo</h3>
+                        <p class="service-description">
+                            Módulos completos de tecnología educativa. Aprende programación, diseño digital y herramientas tecnológicas modernas.
+                        </p>
+                        <div class="price-tag">
+                            <div class="price-amount">$300</div>
+                            <div class="price-unit">Por módulo</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-container">
+                <h2 class="contact-title">Solicita tu Servicio</h2>
+                <p class="contact-subtitle">Completa el formulario y nos pondremos en contacto contigo</p>
+                
+                <form id="contactForm" onsubmit="return false;">
+                    <div class="form-group">
+                        <label for="name">Nombre Completo *</label>
+                        <input type="text" id="name" name="name" required placeholder="Ej: Juan Pérez">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Número de Teléfono *</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="(809) 000-0000">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="service">Servicio que deseas *</label>
+                        <select id="service" name="service" required>
+                            <option value="">Selecciona un servicio</option>
+                            <option value="Progrentis">Progrentis - $200 por unidad</option>
+                            <option value="Tecnología">Tecnología Módulo - $300 por módulo</option>
+                            <option value="Ambos">Ambos servicios</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="quantity">Cantidad *</label>
+                        <input type="number" id="quantity" name="quantity" min="1" value="1" required placeholder="1">
+                    </div>
+
+                    <!-- Total Payment Display -->
+                    <div id="totalDisplay" style="display: none;">
+                        <div style="background: linear-gradient(135deg, var(--accent), var(--accent-light)); padding: 2rem; border-radius: 16px; text-align: center; margin-bottom: 1.5rem; box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3);">
+                            <div style="font-size: 0.9rem; color: var(--primary); font-weight: 600; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em;">Total a Pagar</div>
+                            <div id="totalAmount" style="font-size: 3rem; font-weight: 800; color: var(--primary); font-family: 'Space Mono', monospace; line-height: 1;">$0</div>
+                            <div id="breakdown" style="font-size: 0.85rem; color: var(--primary); margin-top: 0.5rem; opacity: 0.8;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Progrentis Fields -->
+                    <div id="progrentisFields" style="display: none;">
+                        <div style="background: #FEF3C7; padding: 1.5rem; border-radius: 12px; margin-bottom: 1rem; border: 2px solid var(--accent);">
+                            <h4 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.1rem;">📚 Datos de Progrentis</h4>
+                            <div class="form-group">
+                                <label for="progrentisUser">Usuario de Progrentis *</label>
+                                <input type="text" id="progrentisUser" name="progrentis_usuario" placeholder="Tu usuario de Progrentis">
+                            </div>
+                            <div class="form-group">
+                                <label for="progrentisPass">Contraseña de Progrentis *</label>
+                                <input type="text" id="progrentisPass" name="progrentis_contraseña" placeholder="Tu contraseña de Progrentis">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Technology Fields -->
+                    <div id="technologyFields" style="display: none;">
+                        <div style="background: #DBEAFE; padding: 1.5rem; border-radius: 12px; margin-bottom: 1rem; border: 2px solid #3B82F6;">
+                            <h4 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.1rem;">💻 Datos de Tecnología</h4>
+                            <div class="form-group">
+                                <label for="technologyUser">Usuario de Tecnología *</label>
+                                <input type="text" id="technologyUser" name="tecnologia_usuario" placeholder="Tu usuario de Tecnología">
+                            </div>
+                            <div class="form-group">
+                                <label for="technologyPass">Contraseña de Tecnología *</label>
+                                <input type="text" id="technologyPass" name="tecnologia_contraseña" placeholder="Tu contraseña de Tecnología">
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button" onclick="enviarWhatsApp()" class="submit-btn">📱 Enviar por WhatsApp</button>
+
+                    <p style="text-align: center; margin-top: 1rem; color: var(--text-light); font-size: 0.9rem;">
+                        Se abrirá WhatsApp con el mensaje del pedido
+                    </p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Servicios Educativos. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Price constants
+        const PRICES = {
+            'Progrentis': 200,
+            'Tecnología': 300
+        };
+
+        // Calculate and display total
+        function calculateTotal() {
+            const service = document.getElementById('service').value;
+            const quantity = parseInt(document.getElementById('quantity').value) || 0;
+            const totalDisplay = document.getElementById('totalDisplay');
+            const totalAmount = document.getElementById('totalAmount');
+            const breakdown = document.getElementById('breakdown');
+
+            if (!service || quantity <= 0) {
+                totalDisplay.style.display = 'none';
+                return 0;
+            }
+
+            let total = 0;
+            let breakdownText = '';
+
+            if (service === 'Progrentis') {
+                total = PRICES.Progrentis * quantity;
+                breakdownText = `${quantity} × $${PRICES.Progrentis}`;
+            } else if (service === 'Tecnología') {
+                total = PRICES.Tecnología * quantity;
+                breakdownText = `${quantity} × $${PRICES.Tecnología}`;
+            } else if (service === 'Ambos') {
+                total = (PRICES.Progrentis + PRICES.Tecnología) * quantity;
+                breakdownText = `${quantity} × ($${PRICES.Progrentis} + $${PRICES.Tecnología})`;
+            }
+
+            totalAmount.textContent = `$${total.toLocaleString()}`;
+            breakdown.textContent = breakdownText;
+            totalDisplay.style.display = 'block';
+
+            return total;
+        }
+
+        // Update total when service or quantity changes
+        document.getElementById('service').addEventListener('change', calculateTotal);
+        document.getElementById('quantity').addEventListener('input', calculateTotal);
+
+        // Show/hide credential fields based on service selection
+        document.getElementById('service').addEventListener('change', function() {
+            const progrentisFields = document.getElementById('progrentisFields');
+            const technologyFields = document.getElementById('technologyFields');
+            const progrentisUser = document.getElementById('progrentisUser');
+            const progrentisPass = document.getElementById('progrentisPass');
+            const technologyUser = document.getElementById('technologyUser');
+            const technologyPass = document.getElementById('technologyPass');
+
+            // Reset all fields
+            progrentisFields.style.display = 'none';
+            technologyFields.style.display = 'none';
+            progrentisUser.required = false;
+            progrentisPass.required = false;
+            technologyUser.required = false;
+            technologyPass.required = false;
+
+            // Show relevant fields
+            if (this.value === 'Progrentis') {
+                progrentisFields.style.display = 'block';
+                progrentisUser.required = true;
+                progrentisPass.required = true;
+            } else if (this.value === 'Tecnología') {
+                technologyFields.style.display = 'block';
+                technologyUser.required = true;
+                technologyPass.required = true;
+            } else if (this.value === 'Ambos') {
+                progrentisFields.style.display = 'block';
+                technologyFields.style.display = 'block';
+                progrentisUser.required = true;
+                progrentisPass.required = true;
+                technologyUser.required = true;
+                technologyPass.required = true;
+            }
+
+            calculateTotal();
+        });
+
+        // WhatsApp send function
+        function enviarWhatsApp() {
+            // Validate form
+            const form = document.getElementById('contactForm');
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            // Get form data
+            const nombre = document.getElementById('name').value;
+            const telefono = document.getElementById('phone').value;
+            const servicio = document.getElementById('service').value;
+            const cantidad = document.getElementById('quantity').value;
+            const total = calculateTotal();
+
+            // Build message
+            let mensaje = 'Hola! Me interesa solicitar un servicio:\n\n';
+            mensaje += 'Nombre: ' + nombre + '\n';
+            mensaje += 'Telefono: ' + telefono + '\n';
+            mensaje += 'Servicio: ' + servicio + '\n';
+            mensaje += 'Cantidad: ' + cantidad + '\n';
+            mensaje += 'TOTAL A PAGAR: $' + total + '\n\n';
+
+            // Add credentials
+            if (servicio === 'Progrentis' || servicio === 'Ambos') {
+                const user = document.getElementById('progrentisUser').value;
+                const pass = document.getElementById('progrentisPass').value;
+                mensaje += 'PROGRENTIS:\n';
+                mensaje += 'Usuario: ' + user + '\n';
+                mensaje += 'Contraseña: ' + pass + '\n\n';
+            }
+
+            if (servicio === 'Tecnología' || servicio === 'Ambos') {
+                const user = document.getElementById('technologyUser').value;
+                const pass = document.getElementById('technologyPass').value;
+                mensaje += 'TECNOLOGIA:\n';
+                mensaje += 'Usuario: ' + user + '\n';
+                mensaje += 'Contraseña: ' + pass;
+            }
+
+            // Create WhatsApp link
+            const numeroWhatsApp = '18298706654';
+            const url = 'https://wa.me/' + numeroWhatsApp + '?text=' + encodeURIComponent(mensaje);
+            
+            // Open WhatsApp
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>
